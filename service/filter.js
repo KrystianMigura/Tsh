@@ -2,13 +2,41 @@ const db = require('../data/db').movies;
 const fieldEnum = require('../data/db').genres;
 const { _ } = require('underscore');
 
+class Combination {
+    async getCombinations(valuesArray)
+    {
+        const combi = [];
+        let temp = [];
+        const length = valuesArray.length;
+        const slent = Math.pow(2, length);
+        for (let i = 0; i < slent; i++)
+        {
+            temp = [];
+            for (let j = 0; j < length; j++)
+            {
+                if ((i & Math.pow(2, j)))
+                {
+                    temp.push(valuesArray[j]);
+                }
+            }
+            if (temp.length > 0)
+            {
+                combi.push(temp);
+            }
+        }
+
+        combi.sort((a, b) => b.length - a.length);
+        return combi;
+    }
+}
+
 class Filter {
     async setter(body) {
         this.body = body;
         this.movies = db;
         this.array_size = this.movies.length;
-        this.random_id = await this.randomId();
-        this.full_pack = {};
+        this.random_id = await this.randomId(this.array_size);
+        this.full_pack = [];
         return this.run();
     }
 
@@ -19,11 +47,12 @@ class Filter {
             return this.movies[this.random_id];
         } else if (keys && keys.length) {
             const resolve = await this.keysExist(keys, this.body);
+            return resolve;
         }
     }
 
-    async randomId() {
-        return (this.array_size + Date.now())%this.array_size;
+    async randomId(size) {
+        return (size + Date.now())%size;
     }
 
 
@@ -40,45 +69,68 @@ class Filter {
              }
         });
 
-         if((this.gen && this.gen.length) && ('number' === typeof this.rT)){
+         if( (this.gen && this.gen.length) && ('number' === typeof this.rT) ) {
              return this.flow(this.gen, this.rT);
-         } else if (!(this.gen && this.gen.length) && ('number' === typeof this.rT)) {
+         } else if ( !(this.gen && this.gen.length) && ('number' === typeof this.rT) ) {
               return this.flow(null, this.rT);
-         } else if ((this.gen && this.gen.length) && ('number' !== typeof this.rT)){
+         } else if ( (this.gen && this.gen.length) && ('number' !== typeof this.rT) ) {
              return this.flow(this.gen, null);
          }
     }
 
-    async flow(gen_array, time) {
-        let pack = {};
-        let options = '';
-
-        //split to small 
+    async getMovieTimeAndGen(fullList, time){
         this.movies.reduce((total, next, index) => {
-           if (_.isEqual(next.genres, gen_array )){
-               this.full_pack[`${index}`] = next;
-           }
+            const movieTime = parseInt(next.runtime);
+
+            if(fullList === null && time !== null){
+                if ((movieTime >= time - 10) && (movieTime <= time + 10)){
+                    if (!this.full_pack.includes(next))
+                        this.full_pack.push(next);
+                }
+            } else {
+                fullList.forEach((n) => {
+                    if (time !== null && fullList !== null) {
+                        if (((_.isEqual(next.genres, n))) && ((movieTime >= time - 10) && (movieTime <= time + 10))) {
+                            if (!this.full_pack.includes(next))
+                                this.full_pack.push(next);
+                        }
+                    } else {
+                        if (_.isEqual(next.genres, n)) {
+                            if (!this.full_pack.includes(next)) {
+                                this.full_pack.push(next);
+                            }
+                        }
+                    }
+
+                    n.forEach((j) => {
+                        if (next.genres.includes(j)) {
+                            if (!this.full_pack.includes(next))
+                                this.full_pack.push(next)
+                        }
+                    })
+                })
+            }
         });
-        console.log(this.full_pack)
-        console.log(gen_array ," " , time)
+
+        let resolve = this.full_pack;
+
+        resolve.sort((a,b) => { return a.genres.length - b.genres.length });
+        return this.full_pack;
     }
 
-
-
-    /*
-    //option += ` (${`param`} -10 >= ${body[`${i}`] - 10}) && (${`param`} + 10 <= ${body[`${i}`]})`;
-                 if (i.toLowerCase() === 'runtime') {
-            const min = body[`${i}`] - 30;
-            const max = body[`${i}`] + 30;
-
-            const movie = this.movies.reduce((total, next, prew, a) => {
-               let param = parseInt(next.runtime);
-               if(param -10 >= min && param + 10 <= max){
-                   console.log(next)
-               }
-            });
+    async flow(gen_array, time) {
+        let fullList = [];
+        if (gen_array && gen_array.length) {
+            const test = new Combination();
+            fullList = await test.getCombinations(gen_array);
+            const movies = await this.getMovieTimeAndGen(fullList, time);
+            return movies;
+        } else if ( time !== null && (gen_array === null) ) {
+            const movies = await this.getMovieTimeAndGen(null, time);
+            const id = await this.randomId(this.full_pack.length);
+            return this.full_pack[id];
         }
-     */
+    }
 }
 
 module.exports = Filter;

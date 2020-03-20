@@ -1,0 +1,22 @@
+{
+  "post": [
+    {
+      "name": "/add-movie",
+      "fn": "addMovie",
+      "path": "../api/add_movie"
+    },
+    {
+      "name": "/find",
+      "fn": "find",
+      "path": "../api/find"
+    }
+  ],
+  "get": [
+  ],
+  "put": [
+  ],
+  "delete": [
+  ]
+}
+
+

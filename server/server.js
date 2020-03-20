@@ -1,7 +1,5 @@
-"user strict";
 const express = require('express');
-const configuration = require('./config')
-const { routes } = require('./routing')
+const { routes } = require('./routing');
 const bodyParser = require('body-parser');
 
 class Server {
@@ -29,4 +27,4 @@ start_server.run().catch((e) => {
 
 module.exports = {
     server : start_server
-}
+};

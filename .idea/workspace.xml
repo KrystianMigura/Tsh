@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2195235-41fc-4931-8c54-e65928d59dbb" name="Default Changelist" comment="" />
+    <list default="true" id="c2195235-41fc-4931-8c54-e65928d59dbb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/express/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/file-system/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/file-system/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routing.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/filter.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,7 +20,11 @@
       <executable />
     </execution>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1ZGb4MX2FxPBCUbSVH0Fs4KRbQT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -37,7 +49,9 @@
       <updated>1584468185498</updated>
       <workItem from="1584468187038" duration="12301000" />
       <workItem from="1584532210641" duration="7647000" />
-      <workItem from="1584554211179" duration="14836000" />
+      <workItem from="1584554211179" duration="15223000" />
+      <workItem from="1584728261176" duration="4215000" />
+      <workItem from="1584732783335" duration="8607000" />
     </task>
     <servers />
   </component>
@@ -45,13 +59,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="416" y="33" width="607" height="804" key="find.popup" timestamp="1584558755965">
+    <state x="416" y="33" width="607" height="804" key="find.popup" timestamp="1584732472616">
       <screen x="0" y="0" width="1440" height="870" />
     </state>
-    <state x="416" y="33" width="607" height="804" key="find.popup/0.0.1440.870/1440.1.1280.994@0.0.1440.870" timestamp="1584558755965" />
+    <state x="416" y="33" width="607" height="804" key="find.popup/0.0.1440.870/1440.1.1280.994@0.0.1440.870" timestamp="1584732472616" />
     <state x="376" y="198" key="run.anything.popup" timestamp="1584557439929">
       <screen x="0" y="0" width="1440" height="870" />
     </state>
     <state x="376" y="198" key="run.anything.popup/0.0.1440.870/1440.1.1280.994@0.0.1440.870" timestamp="1584557439929" />
+    <state x="383" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1584736907606">
+      <screen x="0" y="0" width="1440" height="870" />
+    </state>
+    <state x="383" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1440.870/1440.1.1280.994@0.0.1440.870" timestamp="1584736907606" />
   </component>
 </project>
