@@ -43,7 +43,7 @@ class Validator {
     }
 
     async all() {
-        const x = {
+        const information = {
             type: this.resolve_type,
             title: this.resolve_title,
             year: this.resolve_year,
@@ -55,8 +55,8 @@ class Validator {
 
         };
         const resolve = {success: true};
-        for(const n in x){
-            const param = x[`${n}`];
+        for(const n in information){
+            const param = information[`${n}`];
             const array_type = (param instanceof Array)? await this.compareInArray(param) : param;
             if (array_type !== 'Ok') {
                 resolve[`${n}`] = array_type;
@@ -73,7 +73,6 @@ class Validator {
                 resolve += `${i} `;
             }
         });
-
         return (resolve === '') ? 'Ok' : resolve;
     }
 

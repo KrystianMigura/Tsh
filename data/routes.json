@@ -9,9 +9,19 @@
       "name": "/find",
       "fn": "find",
       "path": "../api/find"
+    },
+    {
+      "name": "*",
+      "fn": "notFound",
+      "path": "../api/404"
     }
   ],
   "get": [
+    {
+      "name": "*",
+      "fn": "notFound",
+      "path": "../api/404"
+    }
   ],
   "put": [
   ],

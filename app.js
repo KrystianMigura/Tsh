@@ -1,3 +1,5 @@
 "use strict"
-const { server } = require('./server/server')
+const dotenv = require('dotenv').config();
+
+const { server } = require('./server/server');
 
